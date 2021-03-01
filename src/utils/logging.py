@@ -54,7 +54,7 @@ class Logger:
                 else:
                     tensor_chk.append(x[1])
 
-            item = "{:.4f}".format(th.mean(tensor_chk))
+            item = "{:.4f}".format(th.mean(th.stack(tensor_chk)))
             log_str += "{:<25}{:>8}".format(k + ":", item)
             log_str += "\n" if i % 4 == 0 else "\t"
         self.console_logger.info(log_str)
