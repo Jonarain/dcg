@@ -46,7 +46,15 @@ class Logger:
                 continue
             i += 1
             window = 5 if k != "epsilon" else 1
-            item = "{:.4f}".format(th.mean([x[1] for x in self.stats[k][-window:]]))
+
+            tensor_chk = []
+            for x in self.stats[k][-window:]:
+                if not th.is_tensor(x[1]):
+                    tensor_chk.append(th.tensor(x[1]))
+                else:
+                    tensor_chk.append(x[1])
+
+            item = "{:.4f}".format(th.mean(tensor_chk))
             log_str += "{:<25}{:>8}".format(k + ":", item)
             log_str += "\n" if i % 4 == 0 else "\t"
         self.console_logger.info(log_str)
