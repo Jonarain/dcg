@@ -158,7 +158,7 @@ class StagHunt(MultiAgentEnv):
     # ---------- INTERACTION METHODS -----------------------------------------------------------------------------------
     def reset(self):
         # Reset old episode
-        self.prey_alive.fill(1)
+        self.prey_alive.fill(1) # all 1
         self.agents_not_frozen.fill(1)
         self.steps = 0
         self.sum_rewards = 0
@@ -633,7 +633,7 @@ if __name__ == "__main__":
         'toroidal': False,
         'mountain_spawn': False,
         'mountain_agent_row': -1,#-1
-        'observe_state': True,
+        'observe_state': False,
         'observe_walls': False,
         'observe_ids': False,
         'observe_one_hot': False,
