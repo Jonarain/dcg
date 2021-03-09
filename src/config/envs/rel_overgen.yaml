@@ -43,5 +43,5 @@ env_args:
     toroidal: False         # whether the world is bounded (False) or toroidal (True)
     world_shape: [10, 10]   # the shape of the grid-world [height, width]
 
-t_max: 3000000              # number of time steps of the experiment
+t_max: 1000000              # number of time steps of the experiment (default 3000000)
 
