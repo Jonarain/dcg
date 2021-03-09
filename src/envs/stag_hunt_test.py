@@ -186,7 +186,7 @@ class StagHunt(MultiAgentEnv):
     def step(self, actions):
         """ Execute a*bs actions in the environment. """
         if not self.batch_mode:
-            actions = np.expand_dims(np.asarray(actions.cpu(), dtype=int_type), axis=1)
+            actions = np.expand_dims(np.asarray(actions, dtype=int_type), axis=1)
         assert len(actions.shape) == 2 and actions.shape[0] == self.n_agents and actions.shape[1] == self.batch_size, \
             "improper number of agents and/or parallel environments!"
         actions = actions.astype(dtype=int_type)
@@ -450,6 +450,9 @@ class StagHunt(MultiAgentEnv):
     def print_grid(self, batch=0, grid=None):
         if grid is None:
             grid = self.grid
+        print(f"channel 0: {self.grid[0, :, :, 0]}")
+        print(f"channel 1: {self.grid[0, :, :, 1]}")
+        print(f"channel 2: {self.grid[0, :, :, 2]}")
         grid = grid[batch, :, :, :].squeeze().copy()
         for i in range(grid.shape[2]):
             grid[:, :, i] *= i + 1
@@ -566,6 +569,9 @@ class StagHunt(MultiAgentEnv):
             for i, a in enumerate(agent_ids):
                 obs[i, b, :, :, :] = grid[b, (self.agents[a, b, 0]):(self.agents[a, b, 0] + 2*ashape[0] + 1),
                                           (self.agents[a, b, 1]):(self.agents[a, b, 1] + 2*ashape[1] + 1), :]
+        # print(f"obs channl 0: {obs[0, 0, :, :, 0]}")
+        # print(f"obs channl 1: {obs[0, 0, :, :, 1]}")
+        # print(f"obs channl 2: {obs[0, 0, :, :, 2]}")
         obs = obs.reshape(len(agent_ids), self.batch_size, -1)
 
         # Final check: if not all agents can see each other, the mutual knowledge is empty
@@ -644,14 +650,15 @@ if __name__ == "__main__":
         'reward_time': -0.1,
         'capture_terminal': True,
         'episode_limit': 200,
-        'n_stags': 2,
+        'n_stags': 1,
         'p_stags_rest': 0.1,
-        'n_hare': 4,
+        'n_hare': 2,
         'p_hare_rest': 0.5,
         'n_agents': 4,
         'agent_obs': (2, 2),
         'state_as_graph': False,
-        'print_caught_prey': True
+        'print_caught_prey': True,
+        'prevent_cannibalism': True
     }
     env_args = convert(env_args)
     print(env_args)
@@ -665,7 +672,7 @@ if __name__ == "__main__":
         for i in range(grid.shape[2]):
             print(grid[:, :, i], '\n')
 
-    if False:
+    if True:
         print(state)
         for i in range(env.n_agents):
             print(all_obs[i])
