@@ -12,7 +12,7 @@ else
   cmd=docker
 fi
 
-NV_GPU="$GPU" ${cmd} run -d -i \
+NV_GPU="$GPU" ${cmd} run -i \
     --name $name \
     --user $(id -u):$(id -g) \
     -v `pwd`:/pymarl \
