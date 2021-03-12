@@ -43,11 +43,11 @@ RUN git clone https://github.com/oxwhirl/sacred.git /install/sacred && cd /insta
 #### -------------------------------------------------------------------
 #### install pytorch
 #### -------------------------------------------------------------------
-RUN pip3 install torch==1.5.0+cu102
+RUN pip3 install torch==1.5.0
 RUN pip3 install torchvision==0.2.1 snakeviz==1.0.0 pytest==3.8.2 probscale==0.2.3
 
 ### -- This library must be added for DCG, one may need to adapt it to newer torch versions
-RUN pip3 install torch_scatter -f https://pytorch-geometric.com/whl/torch-1.5.0+cu102.html
+RUN pip3 install torch_scatter
 
 ### -- SMAC
 RUN pip3 install git+https://github.com/oxwhirl/smac.git
