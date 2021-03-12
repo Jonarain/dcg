@@ -22,15 +22,15 @@ RUN apt-get update -y && apt-get install -y curl libssl-dev openssl libopenblas-
 
 # Install python3 pip3
 RUN apt-get update
-RUN apt-get -y install python3.6.4
+RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN pip3 install --upgrade pip
 
 # Python packages we use (or used at one point...)
-RUN pip3 install numpy==1.15.2 scipy==1.1.0 pyyaml==3.13 matplotlib==3.0.0
+RUN pip3 install numpy scipy pyyaml matplotlib
 RUN pip3 install imageio
-RUN pip3 install tensorboard-logger==0.1.0
-RUN pip3 install pygame==1.9.4
+RUN pip3 install tensorboard-logger
+RUN pip3 install pygame
 
 RUN mkdir /install
 WORKDIR /install
@@ -43,11 +43,11 @@ RUN git clone https://github.com/oxwhirl/sacred.git /install/sacred && cd /insta
 #### -------------------------------------------------------------------
 #### install pytorch
 #### -------------------------------------------------------------------
-RUN pip3 install torch==1.5.0
-RUN pip3 install torchvision==0.2.1 snakeviz==1.0.0 pytest==3.8.2 probscale==0.2.3
+RUN pip3 install torch
+RUN pip3 install torchvision snakeviz pytest probscale
 
 ### -- This library must be added for DCG, one may need to adapt it to newer torch versions
-RUN pip3 install torch_scatter -f https://pytorch-geometric.com/whl/torch-1.5.0.html
+RUN pip3 install torch_scatter -f https://pytorch-geometric.com/whl/torch-1.8.0+cu102.html
 
 ### -- SMAC
 RUN pip3 install git+https://github.com/oxwhirl/smac.git
