@@ -28,7 +28,7 @@
       ]
     ]
   },
-  "heartbeat": "2021-03-09T21:27:31.678219",
+  "heartbeat": "2021-03-12T00:49:00.998565",
   "host": {
     "ENV": {},
     "cpu": "AMD Ryzen Threadripper 2990WX 32-Core Processor",
@@ -77,7 +77,8 @@
       "--unobserved": false,
       "COMMAND": null,
       "UPDATE": [
-        "env_args.miscapture_punishment=-2"
+        "env_args.map_name=3s5z",
+        "cg_payoff_rank=1"
       ],
       "help": false,
       "with": true
@@ -85,6 +86,7 @@
   },
   "resources": [],
   "result": null,
-  "start_time": "2021-03-09T08:10:50.745624",
-  "status": "RUNNING"
+  "start_time": "2021-03-11T01:04:44.337778",
+  "status": "INTERRUPTED",
+  "stop_time": "2021-03-12T00:49:01.105240"
 }
