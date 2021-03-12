@@ -22,7 +22,7 @@ RUN apt-get update -y && apt-get install -y curl libssl-dev openssl libopenblas-
 
 # Install python3 pip3
 RUN apt-get update
-RUN apt-get -y install python3
+RUN apt-get -y install python3.6.4
 RUN apt-get -y install python3-pip
 RUN pip3 install --upgrade pip
 
